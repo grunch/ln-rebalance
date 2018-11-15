@@ -1,0 +1,16 @@
+{
+  "name": "ln-rebalance",
+  "version": "0.1.0",
+  "description": "LND rebalance scripts",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francisco Calderón",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.17.1",
+    "dotenv": "^6.0.0",
+    "ln-service": "^24.0.0"
+  }
+}

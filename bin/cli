@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+require('dotenv').config();
+const program = require('commander');
+const getNetworkInfo = require('./get_network_info');
+const rebalance = require('./rebalance');
+const getLocalChannel = require('./get_local_channel');
+const getSourceChannels = require('./get_source_channels');
+const getDestinationChannels = require('./get_dest_channels');
+
+program
+  .version('0.1.0', '-v, --version')
+  .option('-n, --get_net_info', 'Get network info', getNetworkInfo)
+  .on('--help', function() {
+    console.log('  Examples:');
+    console.log('');
+    console.log('    $ cli rebalance -d <dst_channel_id> -a [amount]');
+    console.log('    $ cli rebalance -s [src_channel_id] -d <dst_channel_id> -a [amount]');
+  });
+
+program
+  .command('src')
+  .description('Get all channels with local balance > FIXED_PERCENT % + MARGIN %')
+  .action(getSourceChannels);
+
+program
+  .command('dst')
+  .description('Get all channels with local balance < FIXED_PERCENT % - MARGIN %')
+  .action(getDestinationChannels);
+
+program
+  .command('getchaninfo <channel_id>')
+  .description('Get info from a local channel')
+  .action(getLocalChannel);
+
+program
+  .command('rebalance')
+  .description('Rebalance a channel indicating source channel id, destination channel id, or both')
+  .option('-s, --src_channel_id [src_channel_id]>')
+  .option('-d, --dst_channel_id <dst_channel_id>')
+  .option('-a, --amount [amount]')
+  .action(rebalance);
+
+
+program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}
