@@ -1,4 +1,4 @@
-const { localLnd } = require('ln-service');
+const { localLnd } = require('../ln-service');
 
 let lnd;
 
