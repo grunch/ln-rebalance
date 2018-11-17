@@ -25,6 +25,11 @@ This tool are NodeJS scripts for channel rebalancing on LND, this is an experime
 
 For the moment this service only works on a command line, for this need to work you need to setup your own [lightning network node](https://dev.lightning.community/).
 
+## Requirements
+This has been tested on:
+    lnd version 0.5.0-beta commit=v0.5-beta-321-gd4b042dc1946ece8b60d538ade8e912f035612fe
+    node v10.13.0
+
 ## Installation Instructions
 
     git clone https://github.com/grunch/ln-rebalance.git
