@@ -1,4 +1,4 @@
-const createInvoice = require('../ln-service/createInvoice');
+const createInvoice = require('ln-service/createInvoice');
 
 const daemon = require('./daemon');
 

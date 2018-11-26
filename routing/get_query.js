@@ -63,7 +63,7 @@ module.exports = ({ channels, sourceChannelId, destChannelId }) => {
     tokens,
     mtokens,
     source_channel_id: sourceChannel.id,
-    source_pub_key: sourceChannel.partner_public_key,
+    source_public_key: sourceChannel.partner_public_key,
   };
 
   return query;

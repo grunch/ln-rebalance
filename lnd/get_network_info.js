@@ -1,4 +1,4 @@
-const getNetworkInfo = require('../ln-service/getNetworkInfo');
+const getNetworkInfo = require('ln-service/getNetworkInfo');
 
 const daemon = require('./daemon');
 
