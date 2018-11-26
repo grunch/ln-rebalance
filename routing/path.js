@@ -39,7 +39,7 @@ const recalculatePath = ({ route, currentHeight, amtToSend, finalCLTVDelta }) =>
       forward: mSatToSat(amtToForward),
       forward_mtokens: amtToForward.toString(),
       timeout: outgoingTimeLock,
-      pub_key: route.hops[i].pub_key,
+      public_key: route.hops[i].public_key,
     };
     hops.unshift(currentHop);
     nextIncomingAmount = amtToForward + fee;
@@ -61,7 +61,7 @@ const getEdges = async route => {
     const { policies } = await getChannel({ id: hop.channel_id });
     for (let edge of policies) {
       // we need to get data from the origin edge
-      if (edge.public_key !== hop.pub_key) {
+      if (edge.public_key !== hop.public_key) {
         const e = {
           base_fee_mtokens: edge.base_fee_mtokens,
           cltv_delta: edge.cltv_delta,
@@ -83,7 +83,7 @@ const addLastHopsToRoutes = ({
   channel_id,
   tokens,
   mtokens,
-  pub_key,
+  public_key,
 }) => {
   let newRoutes = [];
   for (let route of routes) {
@@ -95,7 +95,7 @@ const addLastHopsToRoutes = ({
       forward: tokens,
       forward_mtokens: mtokens.toString(),
       timeout: 0,
-      pub_key,
+      public_key,
     };
     const hops = [...route.hops, newLastHop];
     route.hops = hops;

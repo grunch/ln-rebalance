@@ -1,4 +1,4 @@
-const pay = require('../ln-service/pay');
+const pay = require('ln-service/pay');
 
 const daemon = require('./daemon');
 

@@ -64,7 +64,7 @@ module.exports = async options => {
         channel_id: query.dest_channel_id,
         tokens: query.tokens,
         mtokens: query.mtokens,
-        pub_key: public_key,
+        public_key,
       });
       let newRoutes = [];
       for (let route of lhRoutes) {

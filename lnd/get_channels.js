@@ -1,4 +1,4 @@
-const getChannels = require('../ln-service/getChannels');
+const getChannels = require('ln-service/getChannels');
 
 const daemon = require('./daemon');
 

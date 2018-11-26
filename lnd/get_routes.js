@@ -1,4 +1,4 @@
-const getRoutes = require('../ln-service/getRoutes');
+const getRoutes = require('ln-service/getRoutes');
 
 const daemon = require('./daemon');
 

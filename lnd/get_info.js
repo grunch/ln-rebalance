@@ -1,4 +1,4 @@
-const getWalletInfo = require('../ln-service/getWalletInfo');
+const getWalletInfo = require('ln-service/getWalletInfo');
 
 const daemon = require('./daemon');
 
