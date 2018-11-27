@@ -14,7 +14,7 @@ const mSatToSat = amt => {
 /* Recalculates amount, cltv and fees for routing path given with new params
 
   {
-    routes: [{
+    route: {
       fee: <Total Fee Tokens To Pay Number>
       fee_mtokens: <Total Fee Millitokens To Pay String>
       hops: [{
@@ -27,30 +27,30 @@ const mSatToSat = amt => {
         [public_key]: <Public Key Hex String>
         timeout: <Timeout Block Height Number>
       }]
-    }]
+    }
     currentHeight: <Current block height Number>
     amtToSend: <Amount of Millitokens to send>
     finalCLTVDelta: <CLTV Timeout Blocks Delta Number>
   }
 
   @returns
-  {
-    routes: [{
-      fee: <Total Fee Tokens To Pay Number>
-      fee_mtokens: <Total Fee Millitokens To Pay String>
-      hops: [{
-        channel_capacity: <Channel Capacity Tokens Number>
-        channel_id: <Unique Channel Id String>
-        fee: <Fee Number>
-        fee_mtokens: <Fee Millitokens String>
-        forward: <Forward Tokens Number>
-        forward_mtokens: <Forward Millitokens String>
-        [public_key]: <Public Key Hex String>
-        timeout: <Timeout Block Height Number>
-      }]
+  route: {
+    fee: <Total Fee Tokens To Pay Number>
+    fee_mtokens: <Total Fee Millitokens To Pay String>
+    hops: [{
+      channel_capacity: <Channel Capacity Tokens Number>
+      channel_id: <Unique Channel Id String>
+      fee: <Fee Number>
+      fee_mtokens: <Fee Millitokens String>
+      forward: <Forward Tokens Number>
+      forward_mtokens: <Forward Millitokens String>
+      [public_key]: <Public Key Hex String>
+      timeout: <Timeout Block Height Number>
     }]
   }
+
 */
+
 const recalculatePath = ({ route, currentHeight, amtToSend, finalCLTVDelta }) => {
   let totalTimeLock = currentHeight;
   let nextIncomingAmount = 0;
@@ -103,44 +103,40 @@ const recalculatePath = ({ route, currentHeight, amtToSend, finalCLTVDelta }) =>
 
 /* Gets channel policies of origin edges
 
-  {
-    routes: [{
-      fee: <Total Fee Tokens To Pay Number>
-      fee_mtokens: <Total Fee Millitokens To Pay String>
-      hops: [{
-        channel_capacity: <Channel Capacity Tokens Number>
-        channel_id: <Unique Channel Id String>
-        fee: <Fee Number>
-        fee_mtokens: <Fee Millitokens String>
-        forward: <Forward Tokens Number>
-        forward_mtokens: <Forward Millitokens String>
-        [public_key]: <Public Key Hex String>
-        timeout: <Timeout Block Height Number>
-      }]
+  route: {
+    fee: <Total Fee Tokens To Pay Number>
+    fee_mtokens: <Total Fee Millitokens To Pay String>
+    hops: [{
+      channel_capacity: <Channel Capacity Tokens Number>
+      channel_id: <Unique Channel Id String>
+      fee: <Fee Number>
+      fee_mtokens: <Fee Millitokens String>
+      forward: <Forward Tokens Number>
+      forward_mtokens: <Forward Millitokens String>
+      [public_key]: <Public Key Hex String>
+      timeout: <Timeout Block Height Number>
     }]
   }
 
   @returns
-  {
-    routes: [{
-      fee: <Total Fee Tokens To Pay Number>
-      fee_mtokens: <Total Fee Millitokens To Pay String>
-      hops: [{
-        channel_capacity: <Channel Capacity Tokens Number>
-        channel_id: <Unique Channel Id String>
-        fee: <Fee Number>
-        fee_mtokens: <Fee Millitokens String>
-        forward: <Forward Tokens Number>
-        forward_mtokens: <Forward Millitokens String>
-        [public_key]: <Public Key Hex String>
-        timeout: <Timeout Block Height Number>
-      }]
-      edges: [{
-        base_fee_mtokens: <Base Routing Fee In Millitokens Number>
-        cltv_delta: <CLTV Blocks Delta Number>
-        fee_rate: <Fee Rate In Millitokens Per Million Number>
-        public_key_from: <Edge Public Key Hex String>
-      }]
+  route: {
+    fee: <Total Fee Tokens To Pay Number>
+    fee_mtokens: <Total Fee Millitokens To Pay String>
+    hops: [{
+      channel_capacity: <Channel Capacity Tokens Number>
+      channel_id: <Unique Channel Id String>
+      fee: <Fee Number>
+      fee_mtokens: <Fee Millitokens String>
+      forward: <Forward Tokens Number>
+      forward_mtokens: <Forward Millitokens String>
+      [public_key]: <Public Key Hex String>
+      timeout: <Timeout Block Height Number>
+    }]
+    edges: [{
+      base_fee_mtokens: <Base Routing Fee In Millitokens Number>
+      cltv_delta: <CLTV Blocks Delta Number>
+      fee_rate: <Fee Rate In Millitokens Per Million Number>
+      public_key_from: <Edge Public Key Hex String>
     }]
   }
 */
@@ -189,6 +185,22 @@ const getEdges = async route => {
     mtokens <Millitokens String>
     public_key: <Public Key Hex String>
   }
+
+  @returns
+  routes: [{
+    fee: <Total Fee Tokens To Pay Number>
+    fee_mtokens: <Total Fee Millitokens To Pay String>
+    hops: [{
+      channel_capacity: <Channel Capacity Tokens Number>
+      channel_id: <Unique Channel Id String>
+      fee: <Fee Number>
+      fee_mtokens: <Fee Millitokens String>
+      forward: <Forward Tokens Number>
+      forward_mtokens: <Forward Millitokens String>
+      [public_key]: <Public Key Hex String>
+      timeout: <Timeout Block Height Number>
+    }]
+  }]
 */
 const addLastHopsToRoutes = ({
   routes,
