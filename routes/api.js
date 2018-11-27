@@ -53,7 +53,7 @@ router.get('/get_local_channel', async (req, res, next) => {
   try {
     const channel = await getLocalChannel(req.query.channel_id);
     if (channel) {
-      return res.status(200).json(group.b);
+      return res.status(200).json(channel);
     }
     return res.status(500).json({
       message: 'Channel not found',

@@ -1,10 +1,23 @@
 const activeChannels = require('./active_channels');
 const { FIXED_PERCENT, MARGIN } = require('../conf');
-// Divides channels in two groups:
-// A group: remote balance < FIXED_PERCENT % - MARGIN %
-//          local balance  > FIXED_PERCENT % + MARGIN %
-// B group: remote balance > FIXED_PERCENT % + MARGIN %
-//          local balance  < FIXED_PERCENT % - MARGIN %
+
+/*
+  Divides channels in two groups:
+  A group: remote balance < FIXED_PERCENT % - MARGIN %
+           local balance  > FIXED_PERCENT % + MARGIN %
+  B group: remote balance > FIXED_PERCENT % + MARGIN %
+           local balance  < FIXED_PERCENT % - MARGIN %
+
+  {
+    channels: <Local LND channels Array>
+  }
+
+  @returns
+  {
+    a: <Source channels Array>
+    b: <Destination channels Array>
+  }
+*/
 module.exports = channels => {
   // we only work with active channels
   const actives = activeChannels(channels);

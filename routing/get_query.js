@@ -1,6 +1,24 @@
 const groupChannels = require('./group_channels');
 const { maxPaymentTokens } = require('../conf');
+/* Get routing query
 
+  {
+    channels: <Local LND channels Array>
+    sourceChannelId: <Source channel Id String>
+    destChannelId: <Destination channel Id String>
+  }
+  
+  @returns
+  {
+    dest_public_key: <Destination node public key String>
+    dest_channel_id: <Destination node channel Id String>
+    dest_channel_capacity: <Destination node public key String>
+    tokens: <Amount of tokens to be send Number>
+    mtokens: <Amount of Millitokens to be send String>
+    source_channel_id: <Source node public key String>
+    source_public_key: <Source node public key String>
+  }
+*/
 module.exports = ({ channels, sourceChannelId, destChannelId }) => {
   if (!destChannelId) {
     console.log('Destination channel id is required');
@@ -8,8 +26,8 @@ module.exports = ({ channels, sourceChannelId, destChannelId }) => {
   }
 
   // we group them:
-  // A group: remote balance < 50% - margin. sourceChannel
-  // B group: local balance < 50% - margin. destChannel
+  // A group: remote balance < PERCENT - margin. sourceChannel
+  // B group: local balance < PERCENT - margin. destChannel
   const group = groupChannels(channels);
   let destChannel = {};
   for (let b of group.b) {
