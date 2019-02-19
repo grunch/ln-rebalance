@@ -7,7 +7,7 @@ const { maxPaymentTokens } = require('../conf');
     sourceChannelId: <Source channel Id String>
     destChannelId: <Destination channel Id String>
   }
-  
+
   @returns
   {
     dest_public_key: <Destination node public key String>
@@ -59,7 +59,7 @@ module.exports = ({ channels, sourceChannelId, destChannelId }) => {
 
   // we calculate the rebalance amount from our A group channel
   let canSendTokens = 0;
-  if (!sourceChannelId) {
+  if (sourceChannelId) {
     canSendTokens = ((sourceChannel.local_balance + sourceChannel.remote_balance) / 2) - sourceChannel.remote_balance;
   }
   const canRecvTokens = ((destChannel.local_balance + destChannel.remote_balance) / 2) - destChannel.local_balance;
