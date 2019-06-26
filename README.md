@@ -1,5 +1,7 @@
 # LN Rebalance
 
+NOTE: This project has been deprecated
+
 ## Overview
 Routing on lighting is complicated because when a node creates the possible routes to send a payment, it know the funding capacity of the channels, but it doesn't know if those channels still have funds or if it has funds in which side of the channel they are, so there are  posibilities of failure that increases while the amount to send increment.
 
