@@ -19,7 +19,7 @@
     "http-errors": "^1.7.1",
     "ln-service": "27.0.0",
     "morgan": "^1.9.1",
-    "pug": "^2.0.3"
+    "pug": "^3.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.6"
